@@ -84,32 +84,69 @@ window.MENU = [
   },
 
   // ===========================  DESSERTS  ===========================
-  // Liste d'exemples — dis-moi tes vrais desserts et je remplace.
   {
     universe: "Desserts",
-    category: "Pâtisseries",
-    key: "patisseries",
-    accent: "#A6683B",       // caramel
-    accentSoft: "#EFDDCB",
-    icon: "🍰",
-    drinks: [
-      { id: "tiramisu",        name: "Tiramisu",            emoji: "🍮", img: null },
-      { id: "fondant-choco",   name: "Fondant au chocolat", emoji: "🍫", img: null },
-      { id: "cheesecake",      name: "Cheesecake",          emoji: "🍰", img: null },
-      { id: "macarons",        name: "Macarons",            emoji: "🌈", img: null },
-    ],
-  },
-  {
-    universe: "Desserts",
-    category: "Glaces & fruits",
-    key: "glaces",
+    category: "Boules de glace",
+    key: "boules",
     accent: "#C06A8E",       // framboise
     accentSoft: "#F0DCE5",
     icon: "🍨",
     drinks: [
-      { id: "glace-vanille",   name: "Glace vanille",       emoji: "🍦", img: null },
-      { id: "salade-fruits",   name: "Salade de fruits",    emoji: "🍓", img: null },
-      { id: "cafe-gourmand",   name: "Café gourmand",       emoji: "☕", img: null },
+      { id: "boule-vanille",       name: "Boule vanille",            emoji: "🍦", img: null },
+      { id: "boule-speculoos",     name: "Boule spéculoos",          emoji: "🍪", img: null },
+      { id: "boule-stracciatella", name: "Boule stracciatella",      emoji: "🍫", img: null },
+      { id: "boule-coco",          name: "Boule coco",               emoji: "🥥", img: null },
+      { id: "boule-chocolat",      name: "Boule chocolat",           emoji: "🍫", img: null },
+      { id: "boule-cookie",        name: "Boule cookie",             emoji: "🍪", img: null },
+      { id: "boule-menthe-choco",  name: "Boule menthe / chocolat",  emoji: "🌿", img: null },
+      { id: "boule-citron",        name: "Boule citron",             emoji: "🍋", img: null },
+    ],
+  },
+  {
+    universe: "Desserts",
+    category: "Bâtonnets & glacés",
+    key: "batonnets",
+    accent: "#A6683B",       // caramel
+    accentSoft: "#EFDDCB",
+    icon: "🍫",
+    drinks: [
+      { id: "mini-magnum-classic", name: "Mini Magnum Classic",       emoji: "🍫", img: null },
+      { id: "mini-magnum-blanc",   name: "Mini Magnum chocolat blanc",emoji: "🤍", img: null },
+      { id: "mystere",             name: "Mystère",                   emoji: "🍦", img: null },
+      { id: "snickers-glace",      name: "Snickers glacé",            emoji: "🥜", img: null },
+    ],
+  },
+  {
+    universe: "Desserts",
+    category: "Fruits givrés",
+    key: "givres",
+    accent: "#4E8C9A",       // givré
+    accentSoft: "#D9EAEE",
+    icon: "🧊",
+    drinks: [
+      { id: "coco-givre",   name: "Coco givré",   emoji: "🥥", img: null },
+      { id: "orange-givre", name: "Orange givré", emoji: "🍊", img: null },
+      { id: "citron-givre", name: "Citron givré", emoji: "🍋", img: null },
+    ],
+  },
+  {
+    universe: "Desserts",
+    category: "Toppings",
+    key: "toppings",
+    accent: "#B58A4A",       // doré
+    accentSoft: "#ECE0C8",
+    icon: "✨",
+    drinks: [
+      { id: "top-chantilly",        name: "Chantilly",          emoji: "🍦", img: null },
+      { id: "top-caramel",          name: "Nappage caramel",    emoji: "🍯", img: null },
+      { id: "top-chocolat",         name: "Nappage chocolat",   emoji: "🍫", img: null },
+      { id: "top-cookies-cream",    name: "Cookies cream",      emoji: "🍪", img: null },
+      { id: "top-sable-chocolat",   name: "Sablé chocolat",     emoji: "🍪", img: null },
+      { id: "top-gaufrette-vanille",name: "Gaufrette vanille",  emoji: "🧇", img: null },
+      { id: "top-mini-oreo",        name: "Mini Oréo",          emoji: "⚫", img: null },
+      { id: "top-cookie-granola",   name: "Mini cookie granola",emoji: "🍪", img: null },
+      { id: "top-gavottes",         name: "Gavottes",           emoji: "🥠", img: null },
+      { id: "top-kitkat",           name: "KitKat",             emoji: "🍫", img: null },
     ],
   },
 ];
