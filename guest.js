@@ -50,53 +50,85 @@
   document.getElementById("enter-btn").addEventListener("click", enter);
   nameInput.addEventListener("keydown", (e) => { if (e.key === "Enter") enter(); });
 
-  // ---------- ÉCRAN MENU ----------
-  const tabsEl = document.getElementById("tabs");
-  const sectionsEl = document.getElementById("sections");
+  // ---------- ÉCRAN MENU (univers + accordéon) ----------
+  const universeTabsEl = document.getElementById("universe-tabs");
+  const accordionEl = document.getElementById("accordion");
 
-  window.MENU.forEach((cat, i) => {
-    const tab = document.createElement("button");
-    tab.className = "tab";
-    tab.setAttribute("role", "tab");
-    tab.setAttribute("aria-selected", i === 0 ? "true" : "false");
-    tab.style.setProperty("--accent", cat.accent);
-    if (i === 0) tab.style.background = cat.accent;
-    tab.innerHTML = `<span>${cat.icon}</span><span>${cat.category}</span>`;
-    tab.addEventListener("click", () => {
-      document.querySelectorAll(".tab").forEach((t) => {
-        t.setAttribute("aria-selected", "false");
-        t.style.background = "";
-      });
-      tab.setAttribute("aria-selected", "true");
-      tab.style.background = cat.accent;
-      document.getElementById("sec-" + cat.key)
-        .scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-    tabsEl.appendChild(tab);
-  });
-
+  // univers dans l'ordre d'apparition
+  const universes = [];
   window.MENU.forEach((cat) => {
-    const sec = document.createElement("section");
-    sec.id = "sec-" + cat.key;
-    sec.innerHTML =
-      `<div class="section-title">
-         <span class="swatch" style="background:${cat.accent}"></span>
-         <h2>${cat.category}</h2>
-       </div>
-       <div class="drink-grid" id="grid-${cat.key}"></div>`;
-    sectionsEl.appendChild(sec);
-
-    const grid = sec.querySelector(".drink-grid");
-    cat.drinks.forEach((d) => {
-      const el = document.createElement("div");
-      el.className = "drink";
-      el.id = "card-" + d.id;
-      el.style.setProperty("--accent", cat.accent);
-      el.style.setProperty("--accent-soft", cat.accentSoft);
-      renderCard(el, d, cat);
-      grid.appendChild(el);
-    });
+    const u = cat.universe || "Boissons";
+    if (!universes.includes(u)) universes.push(u);
   });
+  const UNIVERSE_ICON = { Boissons: "🍸", Desserts: "🍰" };
+  let currentUniverse = universes[0];
+
+  universes.forEach((u) => {
+    const tab = document.createElement("button");
+    tab.className = "utab";
+    tab.dataset.universe = u;
+    tab.setAttribute("role", "tab");
+    tab.innerHTML = `<span class="ui">${UNIVERSE_ICON[u] || "•"}</span><span>${u}</span>`;
+    tab.addEventListener("click", () => selectUniverse(u));
+    universeTabsEl.appendChild(tab);
+  });
+
+  function selectUniverse(u) {
+    currentUniverse = u;
+    document.querySelectorAll(".utab").forEach((t) =>
+      t.setAttribute("aria-selected", t.dataset.universe === u ? "true" : "false"));
+    renderAccordion();
+  }
+
+  // construit une carte de boisson (réutilisable)
+  function buildCard(d, cat) {
+    const el = document.createElement("div");
+    el.className = "drink";
+    el.id = "card-" + d.id;
+    el.style.setProperty("--accent", cat.accent);
+    el.style.setProperty("--accent-soft", cat.accentSoft);
+    renderCard(el, d, cat);
+    return el;
+  }
+
+  function renderAccordion() {
+    accordionEl.innerHTML = "";
+    window.MENU.filter((cat) => (cat.universe || "Boissons") === currentUniverse)
+      .forEach((cat) => {
+        const item = document.createElement("div");
+        item.className = "acc-item";
+        item.style.setProperty("--accent", cat.accent);
+
+        const head = document.createElement("button");
+        head.className = "acc-head";
+        head.setAttribute("aria-expanded", "false");
+        head.innerHTML =
+          `<span class="swatch" style="background:${cat.accent}"></span>
+           <span class="acc-ic">${cat.icon}</span>
+           <span class="acc-name">${cat.category}</span>
+           <span class="acc-count">${cat.drinks.length}</span>
+           <span class="chev">⌄</span>`;
+
+        const panel = document.createElement("div");
+        panel.className = "acc-panel";
+        const grid = document.createElement("div");
+        grid.className = "drink-grid";
+        cat.drinks.forEach((d) => grid.appendChild(buildCard(d, cat)));
+        panel.appendChild(grid);
+
+        head.addEventListener("click", () => {
+          const open = head.getAttribute("aria-expanded") === "true";
+          head.setAttribute("aria-expanded", open ? "false" : "true");
+          panel.classList.toggle("open", !open);
+        });
+
+        item.appendChild(head);
+        item.appendChild(panel);
+        accordionEl.appendChild(item);
+      });
+  }
+
+  selectUniverse(currentUniverse); // affiche le 1er univers, tout replié
 
   function renderCard(el, d, cat) {
     const q = cart[d.id] || 0;

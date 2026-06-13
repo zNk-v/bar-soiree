@@ -3,13 +3,14 @@
 // ============================================================
 // Pour remplacer un emoji par TA photo de bouteille plus tard :
 //   1. Mets la photo dans le dossier  img/  (ex: img/ricard.jpg)
-//   2. Sur la boisson, ajoute  img: "img/ricard.jpg"
-//   Exemple :  { id: "ricard", name: "Ricard", emoji: "🥃", img: "img/ricard.jpg" }
+//   2. Sur la boisson, ajoute  img: null
+//   Exemple :  { id: "ricard", name: "Ricard", emoji: "🥃", img: null }
 //   Tant qu'il n'y a pas d'img, l'emoji s'affiche. Rien d'autre à changer.
 // ============================================================
 
 window.MENU = [
   {
+    universe: "Boissons",
     category: "Alcools forts & cocktails",
     key: "spirits",
     accent: "#9B5A2B",       // cognac
@@ -29,6 +30,7 @@ window.MENU = [
     ],
   },
   {
+    universe: "Boissons",
     category: "Vins & bulles",
     key: "wine",
     accent: "#7E2B3D",       // bordeaux
@@ -44,6 +46,7 @@ window.MENU = [
     ],
   },
   {
+    universe: "Boissons",
     category: "Bières & cidre",
     key: "beer",
     accent: "#B58A1E",       // doré
@@ -58,6 +61,7 @@ window.MENU = [
     ],
   },
   {
+    universe: "Boissons",
     category: "Softs",
     key: "soft",
     accent: "#3E7C68",       // sauge
@@ -76,6 +80,36 @@ window.MENU = [
       { id: "jus-abricot",     name: "Jus d'abricot",          emoji: "🍑", img: null },
       { id: "jus-multi",       name: "Jus multivitaminé",      emoji: "🧃", img: null },
       { id: "eau-petillante",  name: "Eau pétillante",         emoji: "💧", img: null },
+    ],
+  },
+
+  // ===========================  DESSERTS  ===========================
+  // Liste d'exemples — dis-moi tes vrais desserts et je remplace.
+  {
+    universe: "Desserts",
+    category: "Pâtisseries",
+    key: "patisseries",
+    accent: "#A6683B",       // caramel
+    accentSoft: "#EFDDCB",
+    icon: "🍰",
+    drinks: [
+      { id: "tiramisu",        name: "Tiramisu",            emoji: "🍮", img: null },
+      { id: "fondant-choco",   name: "Fondant au chocolat", emoji: "🍫", img: null },
+      { id: "cheesecake",      name: "Cheesecake",          emoji: "🍰", img: null },
+      { id: "macarons",        name: "Macarons",            emoji: "🌈", img: null },
+    ],
+  },
+  {
+    universe: "Desserts",
+    category: "Glaces & fruits",
+    key: "glaces",
+    accent: "#C06A8E",       // framboise
+    accentSoft: "#F0DCE5",
+    icon: "🍨",
+    drinks: [
+      { id: "glace-vanille",   name: "Glace vanille",       emoji: "🍦", img: null },
+      { id: "salade-fruits",   name: "Salade de fruits",    emoji: "🍓", img: null },
+      { id: "cafe-gourmand",   name: "Café gourmand",       emoji: "☕", img: null },
     ],
   },
 ];

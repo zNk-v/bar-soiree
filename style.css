@@ -83,6 +83,39 @@ label.lbl{ display:block; font-size:14px; letter-spacing:.04em; color:var(--ink-
 }
 .tab[aria-selected="true"]{ color:#fff; border-color:transparent; font-weight:500; }
 
+/* —— Onglets d'univers (Boissons / Desserts) —— */
+.universe-tabs{
+  display:flex; gap:10px; padding:6px 0 14px; position:sticky; top:0; z-index:6;
+  background:linear-gradient(var(--bg) 72%, transparent);
+}
+.utab{
+  flex:1; cursor:pointer; font-family:"Cormorant Garamond",serif; font-size:21px; font-weight:600;
+  border:1px solid var(--line); background:var(--card); color:var(--ink-soft);
+  padding:13px 10px; border-radius:14px;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.utab .ui{ font-size:19px; }
+.utab[aria-selected="true"]{ background:var(--gold); color:#fff; border-color:transparent; box-shadow:var(--shadow); }
+
+/* —— Accordéon de catégories —— */
+.acc-item{ margin-bottom:12px; border:1px solid var(--line); border-radius:var(--radius); background:var(--card); box-shadow:var(--shadow); overflow:hidden; }
+.acc-head{
+  width:100%; cursor:pointer; border:none; background:transparent;
+  display:flex; align-items:center; gap:12px; padding:16px 16px;
+  font-family:inherit; text-align:left; color:var(--ink);
+}
+.acc-head .swatch{ width:10px; height:26px; border-radius:4px; flex:0 0 auto; }
+.acc-head .acc-ic{ font-size:21px; }
+.acc-head .acc-name{ flex:1; font-family:"Cormorant Garamond",serif; font-size:22px; font-weight:600; line-height:1.1; }
+.acc-head .acc-count{ font-size:13px; color:var(--ink-soft); background:var(--bg-2); padding:3px 10px; border-radius:999px; }
+.acc-head .chev{ font-size:22px; color:var(--gold-deep); transition:transform .25s ease; line-height:1; }
+.acc-head[aria-expanded="true"]{ background:var(--accent-soft, var(--bg-2)); }
+.acc-head[aria-expanded="true"] .chev{ transform:rotate(180deg); }
+
+.acc-panel{ max-height:0; overflow:hidden; transition:max-height .3s ease; }
+.acc-panel.open{ max-height:2400px; }
+.acc-panel .drink-grid{ padding:14px; }
+
 /* —— Grille de boissons —— */
 .section-title{ display:flex; align-items:center; gap:10px; margin:20px 2px 12px; }
 .section-title .swatch{ width:10px; height:24px; border-radius:4px; }
