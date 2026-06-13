@@ -43,7 +43,7 @@
     if (!v) { nameInput.focus(); return; }
     guestName = v;
     localStorage.setItem("bar_guest_name", guestName);
-    document.getElementById("hello").textContent = "Bonsoir " + guestName;
+    document.getElementById("hello").textContent = "Bonjour " + guestName;
     document.getElementById("order-hello").textContent = guestName;
     show("menu");
   }
@@ -302,7 +302,7 @@
 
   // si déjà un prénom enregistré, on garde l'accueil mais pré-rempli (l'invité peut ré-entrer)
   if (guestName) {
-    document.getElementById("hello").textContent = "Bonsoir " + guestName;
+    document.getElementById("hello").textContent = "Bonjour " + guestName;
     document.getElementById("order-hello").textContent = guestName;
   }
 })();

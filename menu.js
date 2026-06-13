@@ -131,11 +131,11 @@ window.MENU = [
   },
   {
     universe: "Desserts",
-    category: "Toppings",
-    key: "toppings",
+    category: "Petits plus",
+    key: "petits-plus",
     accent: "#B58A4A",       // doré
     accentSoft: "#ECE0C8",
-    icon: "✨",
+    icon: "🍒",
     drinks: [
       { id: "top-chantilly",        name: "Chantilly",          emoji: "🍦", img: null },
       { id: "top-caramel",          name: "Nappage caramel",    emoji: "🍯", img: null },
