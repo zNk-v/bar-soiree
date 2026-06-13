@@ -12,4 +12,4 @@ window.SUPABASE_URL = "https://ndzcgojlntlvfbkddtyu.supabase.co";
 window.SUPABASE_ANON_KEY = "sb_publishable_58FskttOekKKfauudwBWlg_at6qVTzj";
 
 // Nom de la soirée (affiché en haut des écrans). Tu peux le changer.
-window.PARTY_NAME = "La Villa";
+window.PARTY_NAME = "Maison Millstone";
