@@ -8,8 +8,8 @@
 // Garde bien les guillemets autour des valeurs.
 // ============================================================
 
-window.SUPABASE_URL = "https://TON-PROJET.supabase.co";
-window.SUPABASE_ANON_KEY = "TA_CLE_ANON_PUBLIC";
+window.SUPABASE_URL = "https://ndzcgojlntlvfbkddtyu.supabase.co";
+window.SUPABASE_ANON_KEY = "sb_publishable_58FskttOekKKfauudwBWlg_at6qVTzj";
 
 // Nom de la soirée (affiché en haut des écrans). Tu peux le changer.
 window.PARTY_NAME = "La Villa";
