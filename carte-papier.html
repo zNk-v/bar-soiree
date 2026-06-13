@@ -5,67 +5,100 @@
 <title>Carte — à imprimer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#F3EBDD; --card:#FBF6EC; --ink:#2B2620; --ink-soft:#6E6354;
-    --line:#DCCDB4; --gold:#B08543; --gold-deep:#8A6526;
+    --bg:#F2E9DA; --paper:#FBF6EC; --ink:#2A251F; --ink-soft:#75695A;
+    --line:#D8C8AE; --gold:#B0853F; --gold-deep:#8A6526; --gold-soft:#C9A86A;
   }
   *{ box-sizing:border-box; margin:0; padding:0; }
   html,body{ background:#ccc; }
   body{ font-family:"Jost",sans-serif; color:var(--ink); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 
   .sheet{
-    width:210mm; height:297mm; margin:0 auto; background:
-      radial-gradient(120% 80% at 50% -8%, #EBE0CD, var(--bg));
-    padding:16mm 16mm; position:relative; overflow:hidden;
-    display:flex; flex-direction:column; justify-content:center;
+    width:210mm; height:297mm; margin:0 auto; position:relative; overflow:hidden;
+    padding:14mm; display:flex; flex-direction:column; justify-content:center;
+    background:
+      linear-gradient(0deg, rgba(255,250,242,.5), rgba(255,250,242,.5)),
+      radial-gradient(120% 75% at 50% -6%, #ECE0CC, var(--bg));
   }
   .sheet + .sheet{ page-break-before:always; }
 
-  /* cadre filet doré */
-  .frame{ position:absolute; inset:8mm; border:1px solid var(--line); border-radius:6px; pointer-events:none; }
-  .frame::after{ content:""; position:absolute; inset:2.2mm; border:1px solid rgba(176,133,67,.35); border-radius:4px; }
+  /* double filet doré + ornements d'angle */
+  .frame{ position:absolute; inset:9mm; border:1.4px solid var(--gold-soft); }
+  .frame::after{ content:""; position:absolute; inset:2mm; border:.7px solid rgba(176,133,63,.45); }
+  .corner{ position:absolute; width:7mm; height:7mm; z-index:2; }
+  .corner::before,.corner::after{ content:""; position:absolute; background:var(--gold); }
+  .corner::before{ width:7mm; height:1.1px; top:0; }
+  .corner::after{ width:1.1px; height:7mm; left:0; }
+  .corner.tl{ top:9mm; left:9mm; } .corner.tr{ top:9mm; right:9mm; transform:scaleX(-1); }
+  .corner.bl{ bottom:9mm; left:9mm; transform:scaleY(-1); }
+  .corner.br{ bottom:9mm; right:9mm; transform:scale(-1,-1); }
 
-  .head{ text-align:center; position:relative; z-index:1; margin-bottom:7mm; }
-  .head .eyebrow{ font-size:11pt; letter-spacing:.42em; text-transform:uppercase; color:var(--gold-deep); }
-  .head h1{ font-family:"Cormorant Garamond",serif; font-weight:700; font-size:40pt; line-height:1; margin:2mm 0; }
-  .head .sub{ font-family:"Cormorant Garamond",serif; font-style:italic; font-size:14pt; color:var(--ink-soft); }
-  .head .rule{ width:42mm; height:1px; background:var(--gold); margin:4mm auto 0; opacity:.65; }
+  /* —— en-tête —— */
+  .head{ text-align:center; position:relative; z-index:1; margin-bottom:5mm; }
+  .mono{
+    width:12mm; height:12mm; border-radius:50%; margin:0 auto 3mm;
+    border:1.2px solid var(--gold); display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .mono::before{ content:""; position:absolute; inset:1.4mm; border-radius:50%; border:.6px solid var(--gold-soft); }
+  .mono span{ font-family:"Cormorant Garamond",serif; font-weight:600; font-size:12pt; color:var(--gold-deep); letter-spacing:.02em; }
+  .head .eyebrow{ font-size:10.5pt; letter-spacing:.5em; text-transform:uppercase; color:var(--gold-deep); padding-left:.5em; }
+  .head h1{ font-family:"Cormorant Garamond",serif; font-weight:700; font-size:37pt; line-height:1.02; margin:2mm 0 1mm; letter-spacing:.01em; }
+  .head .sub{ font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:400; font-size:15pt; color:var(--ink-soft); }
 
-  .cats{ display:flex; flex-direction:column; gap:6mm; position:relative; z-index:1; }
+  /* séparateur orné */
+  .orn{ display:flex; align-items:center; justify-content:center; gap:3mm; margin:3mm auto 0; width:54mm; }
+  .orn .l{ flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--gold-soft)); }
+  .orn .r{ flex:1; height:1px; background:linear-gradient(90deg, var(--gold-soft), transparent); }
+  .orn .d{ width:2.4mm; height:2.4mm; background:var(--gold); transform:rotate(45deg); }
+
+  /* —— catégories —— */
+  .cats{ position:relative; z-index:1; display:flex; flex-direction:column; gap:4.5mm; }
   .cat{ break-inside:avoid; }
-  .cat-h{ display:flex; align-items:center; gap:3mm; margin-bottom:2.5mm; }
-  .cat-h .bar{ width:3mm; height:7mm; border-radius:1.5mm; }
-  .cat-h .ic{ font-size:13pt; }
-  .cat-h h2{ font-family:"Cormorant Garamond",serif; font-weight:600; font-size:18pt; line-height:1; }
-  .cat-h .line{ flex:1; height:1px; background:var(--line); margin-left:2mm; }
+  .cat-h{ display:flex; align-items:center; justify-content:center; gap:3.5mm; margin-bottom:2.5mm; }
+  .cat-h .ln{ flex:1; height:1px; }
+  .cat-h .ln.l{ background:linear-gradient(90deg, transparent, var(--line)); }
+  .cat-h .ln.r{ background:linear-gradient(90deg, var(--line), transparent); }
+  .cat-h .di{ width:2mm; height:2mm; transform:rotate(45deg); flex:0 0 auto; }
+  .cat-h h2{
+    font-family:"Cormorant Garamond",serif; font-weight:600; font-size:15.5pt;
+    text-transform:uppercase; letter-spacing:.16em; white-space:nowrap; padding:0 1mm;
+  }
 
-  .items{ columns:2; column-gap:9mm; padding-left:6mm; }
-  .item{ break-inside:avoid; display:flex; align-items:baseline; gap:2.5mm; padding:1mm 0; font-size:11pt; }
-  .item .dot{ width:1.6mm; height:1.6mm; border-radius:50%; flex:0 0 auto; transform:translateY(-.3mm); }
-  .item .n{ color:var(--ink); }
+  .items{ columns:2; column-gap:14mm; padding:0 4mm; }
+  .item{
+    break-inside:avoid; display:flex; align-items:baseline; gap:3mm;
+    padding:1mm 0; font-size:11pt; font-weight:300;
+  }
+  .item .tick{ width:3mm; height:1px; background:var(--gold-soft); flex:0 0 auto; transform:translateY(-1mm); }
+  .item .n{ color:var(--ink); letter-spacing:.005em; }
   .item.plus .n{ font-style:italic; color:var(--ink-soft); }
 
-  .foot{ position:relative; z-index:1; margin-top:6mm; display:flex; align-items:center; justify-content:center; gap:6mm; }
-  .foot .qr{ background:#fff; padding:2.5mm; border-radius:3mm; border:1px solid var(--line); }
-  .foot .qr img,.foot .qr canvas{ display:block; width:30mm; height:30mm; }
-  .foot .cta .k{ font-family:"Cormorant Garamond",serif; font-size:17pt; font-weight:600; }
-  .foot .cta .s{ font-size:9.5pt; color:var(--ink-soft); letter-spacing:.04em; max-width:62mm; }
-  .foot .cta .url{ font-size:8.5pt; color:var(--gold-deep); margin-top:1mm; }
+  /* —— pied / QR —— */
+  .foot{ position:relative; z-index:1; margin-top:6mm; display:flex; align-items:center; justify-content:center; gap:7mm; }
+  .foot .qr{ background:#fff; padding:2.6mm; border:1px solid var(--gold-soft); position:relative; }
+  .foot .qr img,.foot .qr canvas{ display:block; width:29mm; height:29mm; }
+  .foot .cta{ max-width:66mm; }
+  .foot .cta .k{ font-family:"Cormorant Garamond",serif; font-size:17pt; font-weight:600; letter-spacing:.01em; }
+  .foot .cta .s{ font-size:9.5pt; font-weight:300; color:var(--ink-soft); line-height:1.45; margin-top:1mm; }
+  .foot .cta .url{ font-size:8.5pt; letter-spacing:.06em; color:var(--gold-deep); margin-top:1.6mm; text-transform:uppercase; }
 
   @page{ size:A4; margin:0; }
-  @media print{ html,body{ background:#fff; } .sheet{ margin:0; } }
+  @media print{ html,body{ background:#fff; } }
 </style>
 </head>
 <body>
   <section class="sheet" data-universe="Boissons">
     <div class="frame"></div>
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
     <div class="head">
+      <div class="mono"><span>LV</span></div>
       <div class="eyebrow">La Villa</div>
       <h1>Les Boissons</h1>
       <div class="sub">Carte du déjeuner</div>
-      <div class="rule"></div>
+      <div class="orn"><span class="l"></span><span class="d"></span><span class="r"></span></div>
     </div>
     <div class="cats" id="cats-Boissons"></div>
     <div class="foot">
@@ -80,18 +113,20 @@
 
   <section class="sheet" data-universe="Desserts">
     <div class="frame"></div>
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
     <div class="head">
+      <div class="mono"><span>LV</span></div>
       <div class="eyebrow">La Villa</div>
       <h1>Les Desserts</h1>
       <div class="sub">Glaces &amp; petits plus</div>
-      <div class="rule"></div>
+      <div class="orn"><span class="l"></span><span class="d"></span><span class="r"></span></div>
     </div>
     <div class="cats" id="cats-Desserts"></div>
     <div class="foot">
       <div class="qr" id="qr-Desserts"></div>
       <div class="cta">
         <div class="k">Scanne &amp; commande</div>
-        <div class="s">Compose ta coupe : une ou plusieurs boules, et ajoute tes petits plus.</div>
+        <div class="s">Compose ta coupe : une ou plusieurs boules, puis ajoute tes petits plus.</div>
         <div class="url">znk-v.github.io/bar-soiree</div>
       </div>
     </div>
@@ -108,16 +143,16 @@
           var isPlus = cat.key === "petits-plus";
           var items = cat.drinks.map(function(d){
             return '<div class="item'+(isPlus?' plus':'')+'">'+
-                     '<span class="dot" style="background:'+cat.accent+'"></span>'+
-                     '<span class="n">'+d.name+'</span></div>';
+                     '<span class="tick"></span><span class="n">'+d.name+'</span></div>';
           }).join("");
           host.insertAdjacentHTML("beforeend",
             '<div class="cat">'+
               '<div class="cat-h">'+
-                '<span class="bar" style="background:'+cat.accent+'"></span>'+
-                '<span class="ic">'+cat.icon+'</span>'+
+                '<span class="ln l"></span>'+
+                '<span class="di" style="background:'+cat.accent+'"></span>'+
                 '<h2 style="color:'+cat.accent+'">'+cat.category+'</h2>'+
-                '<span class="line"></span>'+
+                '<span class="di" style="background:'+cat.accent+'"></span>'+
+                '<span class="ln r"></span>'+
               '</div>'+
               '<div class="items">'+items+'</div>'+
             '</div>');
@@ -127,8 +162,8 @@
     build("Desserts");
     ["Boissons","Desserts"].forEach(function(u){
       new QRCode(document.getElementById("qr-"+u), {
-        text: GUEST_URL, width:200, height:200,
-        colorDark:"#2B2620", colorLight:"#ffffff", correctLevel: QRCode.CorrectLevel.M
+        text: GUEST_URL, width:220, height:220,
+        colorDark:"#2A251F", colorLight:"#ffffff", correctLevel: QRCode.CorrectLevel.M
       });
     });
     window.__ready = true;
