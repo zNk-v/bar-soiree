@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+  <meta name="theme-color" content="#F3EBDD">
+  <title>La carte des boissons</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== ÉCRAN ACCUEIL ===================== -->
+  <main class="app" id="screen-welcome">
+    <div class="brand">
+      <div class="eyebrow">Bienvenue à</div>
+      <h1 id="party-name-1">La Villa</h1>
+      <div class="rule"></div>
+    </div>
+    <p class="center muted" style="margin:26px 4px 30px">
+      Choisis tes boissons, je te les prépare et je t'appelle à la fenêtre quand c'est prêt.
+    </p>
+    <div class="stack">
+      <div>
+        <label class="lbl" for="name">Ton prénom</label>
+        <input class="field" id="name" type="text" autocomplete="given-name"
+               placeholder="Ex : Camille" enterkeyhint="go" maxlength="24">
+      </div>
+      <button class="btn" id="enter-btn">Entrer</button>
+    </div>
+  </main>
+
+  <!-- ===================== ÉCRAN MENU ===================== -->
+  <main class="app hidden" id="screen-menu">
+    <div class="brand">
+      <div class="eyebrow" id="hello">Bonsoir</div>
+      <h1>La carte</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div id="sections"></div>
+
+    <button class="btn ghost" id="see-order-link" style="margin-top:26px">Voir ma commande</button>
+  </main>
+
+  <!-- barre panier (visible sur l'écran menu quand il y a des items) -->
+  <div class="cartbar hidden" id="cartbar">
+    <div class="inner">
+      <button class="btn" id="validate-btn">Valider ma commande · <span id="cart-count">0</span></button>
+    </div>
+  </div>
+
+  <!-- ===================== ÉCRAN MA COMMANDE ===================== -->
+  <main class="app hidden" id="screen-order">
+    <div class="brand">
+      <div class="eyebrow">Ma commande</div>
+      <h1 id="order-hello">Camille</h1>
+      <div class="rule"></div>
+    </div>
+
+    <div class="card" id="order-list" style="margin-top:8px"></div>
+
+    <div class="stack" style="margin-top:24px">
+      <button class="btn" id="add-more-btn">+ Commander d'autres boissons</button>
+    </div>
+    <p class="center muted" style="margin-top:22px; font-size:13.5px">
+      Le statut se met à jour tout seul. Une alerte s'affichera quand une boisson sera prête.
+    </p>
+  </main>
+
+  <!-- ===================== ALERTE PRÊT ===================== -->
+  <div class="alert" id="alert">
+    <div>
+      <div class="big">🔔</div>
+      <h2>C'est prêt !</h2>
+      <div class="dn" id="alert-drink">Aperol Spritz</div>
+      <p>Viens la chercher à la fenêtre 🍹</p>
+      <button class="btn" id="alert-ok">OK, j'y vais</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="menu.js"></script>
+  <script src="common.js"></script>
+  <script src="guest.js"></script>
+</body>
+</html>
