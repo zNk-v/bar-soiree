@@ -162,6 +162,19 @@ window.MENU = [
       { id: "top-kitkat",           name: "KitKat",             emoji: "🍫", img: null },
     ],
   },
+  {
+    universe: "Desserts",
+    category: "Cafés",
+    key: "cafes-dessert",
+    accent: "#6F4E37",       // café
+    accentSoft: "#E2D5C7",
+    icon: "☕",
+    drinks: [
+      { id: "d-expresso", name: "Expresso", emoji: "☕", img: null },
+      { id: "d-lungo",    name: "Lungo",    emoji: "☕", img: null },
+      { id: "d-baileys",  name: "Baileys",  emoji: "🥛", img: null },
+    ],
+  },
 ];
 
 // Index pratique : id -> { drink, category, accent, icon }
