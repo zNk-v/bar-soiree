@@ -90,8 +90,9 @@ window.MENU = [
     accentSoft: "#E2D5C7",
     icon: "☕",
     drinks: [
-      { id: "cafe-court", name: "Café court", emoji: "☕", img: null },
-      { id: "cafe-long",  name: "Café long",  emoji: "☕", img: null },
+      { id: "expresso",     name: "Expresso", emoji: "☕", img: null },
+      { id: "lungo",        name: "Lungo",    emoji: "☕", img: null },
+      { id: "cafe-baileys", name: "Baileys",  emoji: "🥛", img: null },
     ],
   },
 
