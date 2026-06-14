@@ -12,31 +12,33 @@
     --line:#D8C8AE; --gold:#B0853F; --gold-deep:#8A6526; --gold-soft:#C9A86A;
   }
   *{ box-sizing:border-box; margin:0; padding:0; }
-  html,body{ background:#ccc; }
+  html,body{ background:#fff; }
   body{ font-family:"Jost",sans-serif; color:var(--ink); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 
-  .sheet{
-    width:210mm; height:297mm; margin:0 auto; position:relative; overflow:hidden;
-    padding:14mm; display:flex; flex-direction:column; justify-content:center;
-    background:
-      linear-gradient(0deg, rgba(255,250,242,.5), rgba(255,250,242,.5)),
-      radial-gradient(120% 75% at 50% -6%, #ECE0CC, var(--bg));
-  }
+  /* page A4 BLANCHE avec marge de sécurité (imprimable sur toute imprimante) */
+  .sheet{ width:210mm; height:297mm; margin:0 auto; background:#fff; padding:8mm; }
   .sheet + .sheet{ page-break-before:always; }
 
-  /* double filet doré + ornements d'angle */
-  .frame{ position:absolute; inset:9mm; border:1.4px solid var(--gold-soft); }
+  /* le panneau beige est À L'INTÉRIEUR de la marge blanche, il ne touche pas le bord */
+  .card{
+    width:100%; height:100%; position:relative; overflow:hidden;
+    padding:9mm 13mm; display:flex; flex-direction:column; justify-content:center;
+    background: radial-gradient(120% 75% at 50% -6%, #ECE0CC, var(--bg));
+  }
+
+  /* double filet doré + ornements d'angle (relatifs au panneau) */
+  .frame{ position:absolute; inset:4mm; border:1.4px solid var(--gold-soft); }
   .frame::after{ content:""; position:absolute; inset:2mm; border:.7px solid rgba(176,133,63,.45); }
-  .corner{ position:absolute; width:7mm; height:7mm; z-index:2; }
+  .corner{ position:absolute; width:6mm; height:6mm; z-index:2; }
   .corner::before,.corner::after{ content:""; position:absolute; background:var(--gold); }
-  .corner::before{ width:7mm; height:1.1px; top:0; }
-  .corner::after{ width:1.1px; height:7mm; left:0; }
-  .corner.tl{ top:9mm; left:9mm; } .corner.tr{ top:9mm; right:9mm; transform:scaleX(-1); }
-  .corner.bl{ bottom:9mm; left:9mm; transform:scaleY(-1); }
-  .corner.br{ bottom:9mm; right:9mm; transform:scale(-1,-1); }
+  .corner::before{ width:6mm; height:1.1px; top:0; }
+  .corner::after{ width:1.1px; height:6mm; left:0; }
+  .corner.tl{ top:4mm; left:4mm; } .corner.tr{ top:4mm; right:4mm; transform:scaleX(-1); }
+  .corner.bl{ bottom:4mm; left:4mm; transform:scaleY(-1); }
+  .corner.br{ bottom:4mm; right:4mm; transform:scale(-1,-1); }
 
   /* —— en-tête —— */
-  .head{ text-align:center; position:relative; z-index:1; margin-bottom:5mm; }
+  .head{ text-align:center; position:relative; z-index:1; margin-bottom:4mm; }
   .mono{
     width:12mm; height:12mm; border-radius:50%; margin:0 auto 3mm;
     border:1.2px solid var(--gold); display:flex; align-items:center; justify-content:center;
@@ -44,18 +46,18 @@
   }
   .mono::before{ content:""; position:absolute; inset:1.4mm; border-radius:50%; border:.6px solid var(--gold-soft); }
   .mono span{ font-family:"Cormorant Garamond",serif; font-weight:600; font-size:10.5pt; color:var(--gold-deep); letter-spacing:.04em; }
-  .head .eyebrow{ font-size:10.5pt; letter-spacing:.5em; text-transform:uppercase; color:var(--gold-deep); padding-left:.5em; }
-  .head h1{ font-family:"Cormorant Garamond",serif; font-weight:700; font-size:37pt; line-height:1.02; margin:2mm 0 1mm; letter-spacing:.01em; }
-  .head .sub{ font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:400; font-size:15pt; color:var(--ink-soft); }
+  .head .eyebrow{ font-size:10.5pt; letter-spacing:.42em; text-transform:uppercase; color:var(--gold-deep); padding-left:.42em; }
+  .head h1{ font-family:"Cormorant Garamond",serif; font-weight:700; font-size:35pt; line-height:1.02; margin:2mm 0 1mm; letter-spacing:.01em; }
+  .head .sub{ font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:400; font-size:14.5pt; color:var(--ink-soft); }
 
   /* séparateur orné */
-  .orn{ display:flex; align-items:center; justify-content:center; gap:3mm; margin:3mm auto 0; width:54mm; }
+  .orn{ display:flex; align-items:center; justify-content:center; gap:3mm; margin:3mm auto 0; width:52mm; }
   .orn .l{ flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--gold-soft)); }
   .orn .r{ flex:1; height:1px; background:linear-gradient(90deg, var(--gold-soft), transparent); }
   .orn .d{ width:2.4mm; height:2.4mm; background:var(--gold); transform:rotate(45deg); }
 
   /* —— catégories —— */
-  .cats{ position:relative; z-index:1; display:flex; flex-direction:column; gap:4.5mm; }
+  .cats{ position:relative; z-index:1; display:flex; flex-direction:column; gap:3mm; }
   .cat{ break-inside:avoid; }
   .cat-h{ display:flex; align-items:center; justify-content:center; gap:3.5mm; margin-bottom:2.5mm; }
   .cat-h .ln{ flex:1; height:1px; }
@@ -63,68 +65,72 @@
   .cat-h .ln.r{ background:linear-gradient(90deg, var(--line), transparent); }
   .cat-h .di{ width:2mm; height:2mm; transform:rotate(45deg); flex:0 0 auto; }
   .cat-h h2{
-    font-family:"Cormorant Garamond",serif; font-weight:600; font-size:15.5pt;
+    font-family:"Cormorant Garamond",serif; font-weight:600; font-size:15pt;
     text-transform:uppercase; letter-spacing:.16em; white-space:nowrap; padding:0 1mm;
   }
 
   .items{ columns:2; column-gap:14mm; padding:0 4mm; }
   .item{
     break-inside:avoid; display:flex; align-items:baseline; gap:3mm;
-    padding:1mm 0; font-size:11pt; font-weight:300;
+    padding:0.7mm 0; font-size:11pt; font-weight:300;
   }
   .item .tick{ width:3mm; height:1px; background:var(--gold-soft); flex:0 0 auto; transform:translateY(-1mm); }
   .item .n{ color:var(--ink); letter-spacing:.005em; }
   .item.plus .n{ font-style:italic; color:var(--ink-soft); }
 
   /* —— pied / QR —— */
-  .foot{ position:relative; z-index:1; margin-top:6mm; display:flex; align-items:center; justify-content:center; gap:7mm; }
-  .foot .qr{ background:#fff; padding:2.6mm; border:1px solid var(--gold-soft); position:relative; }
-  .foot .qr img,.foot .qr canvas{ display:block; width:29mm; height:29mm; }
+  .foot{ position:relative; z-index:1; margin-top:5mm; display:flex; align-items:center; justify-content:center; gap:7mm; }
+  .foot .qr{ background:#fff; padding:2.6mm; border:1px solid var(--gold-soft); }
+  .foot .qr img,.foot .qr canvas{ display:block; width:28mm; height:28mm; }
   .foot .cta{ max-width:66mm; }
   .foot .cta .k{ font-family:"Cormorant Garamond",serif; font-size:17pt; font-weight:600; letter-spacing:.01em; }
   .foot .cta .s{ font-size:9.5pt; font-weight:300; color:var(--ink-soft); line-height:1.45; margin-top:1mm; }
-  .foot .cta .url{ font-size:8.5pt; letter-spacing:.06em; color:var(--gold-deep); margin-top:1.6mm; text-transform:uppercase; }
 
   @page{ size:A4; margin:0; }
-  @media print{ html,body{ background:#fff; } }
 </style>
 </head>
 <body>
-  <section class="sheet" data-universe="Boissons">
-    <div class="frame"></div>
-    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-    <div class="head">
-      <div class="mono"><span>MM</span></div>
-      <div class="eyebrow">Maison Millstone</div>
-      <h1>Les Boissons</h1>
-      <div class="sub">Carte du déjeuner</div>
-      <div class="orn"><span class="l"></span><span class="d"></span><span class="r"></span></div>
-    </div>
-    <div class="cats" id="cats-Boissons"></div>
-    <div class="foot">
-      <div class="qr" id="qr-Boissons"></div>
-      <div class="cta">
-        <div class="k">Scanne &amp; commande</div>
-        <div class="s">Choisis tes boissons sur ton téléphone, je te les prépare et je t'appelle quand c'est prêt.</div>      </div>
+  <section class="sheet">
+    <div class="card">
+      <div class="frame"></div>
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="head">
+        <div class="mono"><span>MM</span></div>
+        <div class="eyebrow">Maison Millstone</div>
+        <h1>Les Boissons</h1>
+        <div class="sub">Carte du déjeuner</div>
+        <div class="orn"><span class="l"></span><span class="d"></span><span class="r"></span></div>
+      </div>
+      <div class="cats" id="cats-Boissons"></div>
+      <div class="foot">
+        <div class="qr" id="qr-Boissons"></div>
+        <div class="cta">
+          <div class="k">Scanne &amp; commande</div>
+          <div class="s">Choisis tes boissons sur ton téléphone, je te les prépare et je t'appelle quand c'est prêt.</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="sheet" data-universe="Desserts">
-    <div class="frame"></div>
-    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-    <div class="head">
-      <div class="mono"><span>MM</span></div>
-      <div class="eyebrow">Maison Millstone</div>
-      <h1>Les Desserts</h1>
-      <div class="sub">Glaces &amp; petits plus</div>
-      <div class="orn"><span class="l"></span><span class="d"></span><span class="r"></span></div>
-    </div>
-    <div class="cats" id="cats-Desserts"></div>
-    <div class="foot">
-      <div class="qr" id="qr-Desserts"></div>
-      <div class="cta">
-        <div class="k">Scanne &amp; commande</div>
-        <div class="s">Compose ta coupe : une ou plusieurs boules, puis ajoute tes petits plus.</div>      </div>
+  <section class="sheet">
+    <div class="card">
+      <div class="frame"></div>
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="head">
+        <div class="mono"><span>MM</span></div>
+        <div class="eyebrow">Maison Millstone</div>
+        <h1>Les Desserts</h1>
+        <div class="sub">Glaces &amp; petits plus</div>
+        <div class="orn"><span class="l"></span><span class="d"></span><span class="r"></span></div>
+      </div>
+      <div class="cats" id="cats-Desserts"></div>
+      <div class="foot">
+        <div class="qr" id="qr-Desserts"></div>
+        <div class="cta">
+          <div class="k">Scanne &amp; commande</div>
+          <div class="s">Compose ta coupe : une ou plusieurs boules, puis ajoute tes petits plus.</div>
+        </div>
+      </div>
     </div>
   </section>
 

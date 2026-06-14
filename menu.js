@@ -82,6 +82,18 @@ window.MENU = [
       { id: "eau-petillante",  name: "Eau pétillante",         emoji: "💧", img: null },
     ],
   },
+  {
+    universe: "Boissons",
+    category: "Cafés",
+    key: "cafes",
+    accent: "#6F4E37",       // café
+    accentSoft: "#E2D5C7",
+    icon: "☕",
+    drinks: [
+      { id: "cafe-court", name: "Café court", emoji: "☕", img: null },
+      { id: "cafe-long",  name: "Café long",  emoji: "☕", img: null },
+    ],
+  },
 
   // ===========================  DESSERTS  ===========================
   {
